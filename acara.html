@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acara dan Kegiatan - Perpustakaan Sekolah</title>
+    <meta name="description" content="Jadwal acara dan kegiatan di Perpustakaan Sekolah. Ikuti berbagai workshop, seminar, dan kegiatan literasi menarik.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        poppins: ['Poppins', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+</head>
+<body class="font-poppins bg-gray-50">
+    <!-- Header -->
+    <header class="bg-white shadow-md fixed w-full top-0 z-50">
+        <nav class="container mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                    <i class="fas fa-book-reader text-3xl text-blue-600"></i>
+                    <span class="ml-2 text-xl font-semibold text-gray-800">Perpustakaan Sekolah</span>
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex space-x-6">
+                    <a href="index.html" class="text-gray-600 hover:text-blue-600">Beranda</a>
+                    <a href="katalog.html" class="text-gray-600 hover:text-blue-600">Katalog</a>
+                    <a href="acara.html" class="text-blue-600 font-medium">Acara</a>
+                    <a href="blog.html" class="text-gray-600 hover:text-blue-600">Blog</a>
+                    <a href="kontak.html" class="text-gray-600 hover:text-blue-600">Kontak</a>
+                </div>
+
+                <!-- Mobile Navigation Button -->
+                <button class="md:hidden text-gray-600" id="mobile-menu-button">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+
+            <!-- Mobile Navigation Menu -->
+            <div class="md:hidden hidden" id="mobile-menu">
+                <div class="flex flex-col space-y-4 mt-4 pb-4">
+                    <a href="index.html" class="text-gray-600 hover:text-blue-600">Beranda</a>
+                    <a href="katalog.html" class="text-gray-600 hover:text-blue-600">Katalog</a>
+                    <a href="acara.html" class="text-blue-600 font-medium">Acara</a>
+                    <a href="blog.html" class="text-gray-600 hover:text-blue-600">Blog</a>
+                    <a href="kontak.html" class="text-gray-600 hover:text-blue-600">Kontak</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 pt-24 pb-12">
+        <!-- Page Title -->
+        <div class="text-center mb-12">
+            <h1 class="text-3xl font-bold text-gray-800 mb-4">Acara dan Kegiatan</h1>
+            <p class="text-gray-600">Ikuti berbagai kegiatan menarik di perpustakaan kami</p>
+        </div>
+
+        <!-- Featured Event -->
+        <div class="bg-white rounded-lg shadow-md overflow-hidden mb-12">
+            <div class="md:flex">
+                <div class="md:w-1/2">
+                    <img src="https://images.pexels.com/photos/7092613/pexels-photo-7092613.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" 
+                         alt="Featured Event" class="w-full h-64 md:h-full object-cover">
+                </div>
+                <div class="md:w-1/2 p-6 md:p-8">
+                    <span class="inline-block bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm font-medium mb-4">
+                        Featured Event
+                    </span>
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4">Workshop Menulis Kreatif</h2>
+                    <div class="flex items-center text-gray-600 mb-4">
+                        <i class="far fa-calendar mr-2"></i>
+                        <span>Sabtu, 15 Maret 2024</span>
+                    </div>
+                    <div class="flex items-center text-gray-600 mb-4">
+                        <i class="far fa-clock mr-2"></i>
+                        <span>09:00 - 12:00 WIB</span>
+                    </div>
+                    <p class="text-gray-600 mb-6">
+                        Bergabunglah dalam workshop menulis kreatif bersama penulis terkenal. Pelajari teknik menulis yang efektif
+                        dan kembangkan kemampuan menulis Anda.
+                    </p>
+                    <button class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition duration-300">
+                        Daftar Sekarang
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Calendar and Events List -->
+        <div class="grid md:grid-cols-3 gap-8">
+            <!-- Calendar -->
+            <div class="md:col-span-1">
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-lg font-semibold">Maret 2024</h3>
+                        <div class="flex space-x-2">
+                            <button class="text-gray-600 hover:text-blue-600">
+                                <i class="fas fa-chevron-left"></i>
+                            </button>
+                            <button class="text-gray-600 hover:text-blue-600">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-7 gap-2 text-center mb-2">
+                        <div class="text-gray-600 text-sm">Min</div>
+                        <div class="text-gray-600 text-sm">Sen</div>
+                        <div class="text-gray-600 text-sm">Sel</div>
+                        <div class="text-gray-600 text-sm">Rab</div>
+                        <div class="text-gray-600 text-sm">Kam</div>
+                        <div class="text-gray-600 text-sm">Jum</div>
+                        <div class="text-gray-600 text-sm">Sab</div>
+                    </div>
+                    <div class="grid grid-cols-7 gap-2 text-center">
+                        <div class="text-gray-400">25</div>
+                        <div class="text-gray-400">26</div>
+                        <div class="text-gray-400">27</div>
+                        <div class="text-gray-400">28</div>
+                        <div class="text-gray-400">29</div>
+                        <div>1</div>
+                        <div>2</div>
+                        <div>3</div>
+                        <div>4</div>
+                        <div>5</div>
+                        <div>6</div>
+                        <div>7</div>
+                        <div>8</div>
+                        <div>9</div>
+                        <div>10</div>
+                        <div>11</div>
+                        <div>12</div>
+                        <div>13</div>
+                        <div>14</div>
+                        <div class="bg-blue-600 text-white rounded-full">15</div>
+                        <div>16</div>
+                        <div>17</div>
+                        <div>18</div>
+                        <div>19</div>
+                        <div>20</div>
+                        <div>21</div>
+                        <div>22</div>
+                        <div>23</div>
+                        <div>24</div>
+                        <div>25</div>
+                        <div>26</div>
+                        <div>27</div>
+                        <div>28</div>
+                        <div>29</div>
+                        <div>30</div>
+                        <div>31</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Events List -->
+            <div class="md:col-span-2">
+                <div class="space-y-6">
+                    <!-- Event Card 1 -->
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <div class="flex items-start">
+                            <div class="bg-blue-100 text-blue-600 rounded-lg p-3 mr-4">
+                                <i class="fas fa-book text-2xl"></i>
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="text-xl font-semibold mb-2">Bedah Buku: Novel Terbaru</h3>
+                                <div class="flex items-center text-gray-600 mb-2">
+                                    <i class="far fa-calendar mr-2"></i>
+                                    <span>Jumat, 8 Maret 2024</span>
+                                </div>
+                                <div class="flex items-center text-gray-600 mb-4">
+                                    <i class="far fa-clock mr-2"></i>
+                                    <span>14:00 - 16:00 WIB</span>
+                                </div>
+                                <p class="text-gray-600 mb-4">
+                                    Diskusi mendalam tentang novel terbaru karya penulis nasional bersama komunitas pembaca.
+                                </p>
+                                <button class="text-blue-600 hover:text-blue-700 font-medium">
+                                    Lihat Detail <i class="fas fa-arrow-right ml-2"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Event Card 2 -->
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <div class="flex items-start">
+                            <div class="bg-green-100 text-green-600 rounded-lg p-3 mr-4">
+                                <i class="fas fa-chalkboard-teacher text-2xl"></i>
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="text-xl font-semibold mb-2">Workshop Penelitian</h3>
+                                <div class="flex items-center text-gray-600 mb-2">
+                                    <i class="far fa-calendar mr-2"></i>
+                                    <span>Sabtu, 15 Maret 2024</span>
+                                </div>
+                                <div class="flex items-center text-gray-600 mb-4">
+                                    <i class="far fa-clock mr-2"></i>
+                                    <span>09:00 - 12:00 WIB</span>
+                                </div>
+                                <p class="text-gray-600 mb-4">
+                                    Workshop tentang metodologi penelitian dan penulisan karya ilmiah untuk siswa SMA.
+                                </p>
+                                <button class="text-blue-600 hover:text-blue-700 font-medium">
+                                    Lihat Detail <i class="fas fa-arrow-right ml-2"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Event Card 3 -->
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <div class="flex items-start">
+                            <div class="bg-purple-100 text-purple-600 rounded-lg p-3 mr-4">
+                                <i class="fas fa-users text-2xl"></i>
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="text-xl font-semibold mb-2">Klub Membaca</h3>
+                                <div class="flex items-center text-gray-600 mb-2">
+                                    <i class="far fa-calendar mr-2"></i>
+                                    <span>Minggu, 17 Maret 2024</span>
+                                </div>
+                                <div class="flex items-center text-gray-600 mb-4">
+                                    <i class="far fa-clock mr-2"></i>
+                                    <span>10:00 - 12:00 WIB</span>
+                                </div>
+                                <p class="text-gray-600 mb-4">
+                                    Pertemuan rutin klub membaca untuk mendiskusikan buku pilihan bulan ini.
+                                </p>
+                                <button class="text-blue-600 hover:text-blue-700 font-medium">
+                                    Lihat Detail <i class="fas fa-arrow-right ml-2"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <h4 class="text-xl font-semibold mb-4">Perpustakaan Sekolah</h4>
+                    <p class="text-gray-400">Tempat membaca, belajar, dan mengembangkan pengetahuan untuk masa depan yang lebih baik.</p>
+                </div>
+                <div>
+                    <h4 class="text-xl font-semibold mb-4">Link Cepat</h4>
+                    <ul class="space-y-2">
+                        <li><a href="katalog.html" class="text-gray-400 hover:text-white">Katalog Buku</a></li>
+                        <li><a href="acara.html" class="text-gray-400 hover:text-white">Acara</a></li>
+                        <li><a href="blog.html" class="text-gray-400 hover:text-white">Blog</a></li>
+                        <li><a href="kontak.html" class="text-gray-400 hover:text-white">Kontak</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-xl font-semibold mb-4">Kontak</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><i class="fas fa-map-marker-alt mr-2"></i> Jl. Pendidikan No. 123</li>
+                        <li><i class="fas fa-phone mr-2"></i> (021) 123-4567</li>
+                        <li><i class="fas fa-envelope mr-2"></i> info@perpustakaan.sch.id</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-xl font-semibold mb-4">Sosial Media</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-facebook text-2xl"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-twitter text-2xl"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-instagram text-2xl"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-youtube text-2xl"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 Perpustakaan Sekolah. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="js/main.js"></script>
+</body>
+</html>
