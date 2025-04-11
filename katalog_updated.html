@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Katalog Buku - Perpustakaan Sekolah</title>
+    <meta name="description" content="Jelajahi koleksi buku perpustakaan sekolah kami. Temukan buku favorit Anda dengan mudah.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        poppins: ['Poppins', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+</head>
+<body class="font-poppins bg-gray-50">
+    <!-- Header -->
+    <header class="bg-white shadow-md fixed w-full top-0 z-50">
+        <nav class="container mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                    <i class="fas fa-book-reader text-3xl text-blue-600"></i>
+                    <span class="ml-2 text-xl font-semibold text-gray-800">Perpustakaan Sekolah</span>
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex space-x-6">
+                    <a href="index.html" class="text-gray-600 hover:text-blue-600">Beranda</a>
+                    <a href="katalog_updated.html" class="text-blue-600 font-medium">Katalog</a>
+                    <a href="acara.html" class="text-gray-600 hover:text-blue-600">Acara</a>
+                    <a href="blog.html" class="text-gray-600 hover:text-blue-600">Blog</a>
+                    <a href="kontak.html" class="text-gray-600 hover:text-blue-600">Kontak</a>
+                </div>
+
+                <!-- Mobile Navigation Button -->
+                <button class="md:hidden text-gray-600" id="mobile-menu-button">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+
+            <!-- Mobile Navigation Menu -->
+            <div class="md:hidden hidden" id="mobile-menu">
+                <div class="flex flex-col space-y-4 mt-4 pb-4">
+                    <a href="index.html" class="text-gray-600 hover:text-blue-600">Beranda</a>
+                    <a href="katalog_updated.html" class="text-blue-600 font-medium">Katalog</a>
+                    <a href="acara.html" class="text-gray-600 hover:text-blue-600">Acara</a>
+                    <a href="blog.html" class="text-gray-600 hover:text-blue-600">Blog</a>
+                    <a href="kontak.html" class="text-gray-600 hover:text-blue-600">Kontak</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 pt-24 pb-12">
+        <!-- Search and Filter Section -->
+        <div class="mb-8">
+            <h1 class="text-3xl font-bold text-gray-800 mb-6">Katalog Buku</h1>
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <div class="grid md:grid-cols-4 gap-4">
+                    <!-- Search Input -->
+                    <div class="md:col-span-2">
+                        <input type="text" id="search" placeholder="Cari judul buku atau penulis..." 
+                               class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    </div>
+                    <!-- Category Filter -->
+                    <div>
+                        <select id="category" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            <option value="">Semua Kategori</option>
+                            <option value="fiksi">Fiksi</option>
+                            <option value="non-fiksi">Non-Fiksi</option>
+                            <option value="pelajaran">Buku Pelajaran</option>
+                            <option value="referensi">Referensi</option>
+                        </select>
+                    </div>
+                    <!-- Availability Filter -->
+                    <div>
+                        <select id="availability" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            <option value="">Semua Status</option>
+                            <option value="tersedia">Tersedia</option>
+                            <option value="dipinjam">Sedang Dipinjam</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Books Grid -->
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6" id="books-container">
+            <!-- Book Card 1 -->
+            <div class="bg-white rounded-lg shadow-md overflow-hidden book-card" data-category="buku pelajaran" data-available="true">
+                <img src="https://images.pexels.com/photos/1005324/literature-book-open-pages-1005324.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" 
+                     alt="Book Cover" class="w-full h-48 object-cover">
+                <div class="p-4">
+                    <span class="text-sm text-white bg-green-500 px-2 py-1 rounded-full">Tersedia</span>
+                    <h3 class="font-semibold text-lg mt-2">Matematika Dasar</h3>
+                    <p class="text-gray-600 text-sm mb-2">Penulis: Dr. Ahmad</p>
+                    <p class="text-gray-600 text-sm mb-4">Kategori: Buku Pelajaran</p>
+                    <button class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition duration-300">
+                        Pinjam Buku
+                    </button>
+                </div>
+            </div>
+
+            <!-- Book Card 2 -->
+            <div class="bg-white rounded-lg shadow-md overflow-hidden book-card" data-category="buku pelajaran" data-available="false">
+                <img src="https://images.pexels.com/photos/1005324/literature-book-open-pages-1005324.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" 
+                     alt="Book Cover" class="w-full h-48 object-cover">
+                <div class="p-4">
+                    <span class="text-sm text-white bg-red-500 px-2 py-1 rounded-full">Dipinjam</span>
+                    <h3 class="font-semibold text-lg mt-2">Sejarah Indonesia</h3>
+                    <p class="text-gray-600 text-sm mb-2">Penulis: Prof. Suharto</p>
+                    <p class="text-gray-600 text-sm mb-4">Kategori: Buku Pelajaran</p>
+                    <button class="w-full bg-gray-400 text-white py-2 rounded-lg cursor-not-allowed">
+                        Sedang Dipinjam
+                    </button>
+                </div>
+            </div>
+
+            <!-- Book Card 3 -->
+            <div class="bg-white rounded-lg shadow-md overflow-hidden book-card" data-category="fiksi" data-available="true">
+                <img src="https://images.pexels.com/photos/1005324/literature-book-open-pages-1005324.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" 
+                     alt="Book Cover" class="w-full h-48 object-cover">
+                <div class="p-4">
+                    <span class="text-sm text-white bg-green-500 px-2 py-1 rounded-full">Tersedia</span>
+                    <h3 class="font-semibold text-lg mt-2">Laskar Pelangi</h3>
+                    <p class="text-gray-600 text-sm mb-2">Penulis: Andrea Hirata</p>
+                    <p class="text-gray-600 text-sm mb-4">Kategori: Fiksi</p>
+                    <button class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition duration-300">
+                        Pinjam Buku
+                    </button>
+                </div>
+            </div>
+
+            <!-- Book Card 4 -->
+            <div class="bg-white rounded-lg shadow-md overflow-hidden book-card" data-category="buku pelajaran" data-available="true">
+                <img src="https://images.pexels.com/photos/1005324/literature-book-open-pages-1005324.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" 
+                     alt="Book Cover" class="w-full h-48 object-cover">
+                <div class="p-4">
+                    <span class="text-sm text-white bg-green-500 px-2 py-1 rounded-full">Tersedia</span>
+                    <h3 class="font-semibold text-lg mt-2">Biologi Modern</h3>
+                    <p class="text-gray-600 text-sm mb-2">Penulis: Dr. Sarah Johnson</p>
+                    <p class="text-gray-600 text-sm mb-4">Kategori: Buku Pelajaran</p>
+                    <button class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition duration-300">
+                        Pinjam Buku
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pagination -->
+        <div class="mt-8 flex justify-center">
+            <nav class="flex items-center space-x-2">
+                <button class="px-3 py-1 rounded-lg border border-gray-300 text-gray-600 hover:bg-gray-50">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="px-3 py-1 rounded-lg border border-blue-600 bg-blue-600 text-white">1</button>
+                <button class="px-3 py-1 rounded-lg border border-gray-300 text-gray-600 hover:bg-gray-50">2</button>
+                <button class="px-3 py-1 rounded-lg border border-gray-300 text-gray-600 hover:bg-gray-50">3</button>
+                <button class="px-3 py-1 rounded-lg border border-gray-300 text-gray-600 hover:bg-gray-50">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </nav>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <h4 class="text-xl font-semibold mb-4">Perpustakaan Sekolah</h4>
+                    <p class="text-gray-400">Tempat membaca, belajar, dan mengembangkan pengetahuan untuk masa depan yang lebih baik.</p>
+                </div>
+                <div>
+                    <h4 class="text-xl font-semibold mb-4">Link Cepat</h4>
+                    <ul class="space-y-2">
+                        <li><a href="katalog_updated.html" class="text-gray-400 hover:text-white">Katalog Buku</a></li>
+                        <li><a href="acara.html" class="text-gray-400 hover:text-white">Acara</a></li>
+                        <li><a href="blog.html" class="text-gray-400 hover:text-white">Blog</a></li>
+                        <li><a href="kontak.html" class="text-gray-400 hover:text-white">Kontak</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-xl font-semibold mb-4">Kontak</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><i class="fas fa-map-marker-alt mr-2"></i> Jl. Pendidikan No. 123</li>
+                        <li><i class="fas fa-phone mr-2"></i> (021) 123-4567</li>
+                        <li><i class="fas fa-envelope mr-2"></i> info@perpustakaan.sch.id</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-xl font-semibold mb-4">Sosial Media</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-facebook text-2xl"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-twitter text-2xl"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-instagram text-2xl"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-youtube text-2xl"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 Perpustakaan Sekolah. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="js/main.js"></script>
+</body>
+</html>
