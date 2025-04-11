@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perpustakaan Sekolah</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navbar -->
+    <nav class="bg-blue-600 text-white shadow-lg">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center space-x-2">
+                    <i class="fas fa-book-reader text-2xl"></i>
+                    <span class="text-xl font-bold">Perpustakaan Sekolah</span>
+                </div>
+                <div class="hidden md:flex space-x-6">
+                    <a href="#beranda" class="hover:text-blue-200">Beranda</a>
+                    <a href="#berita" class="hover:text-blue-200">Berita</a>
+                    <a href="#katalog" class="hover:text-blue-200">Katalog</a>
+                    <a href="#acara" class="hover:text-blue-200">Acara</a>
+                    <a href="#admin" class="hover:text-blue-200">Admin</a>
+                </div>
+                <button class="md:hidden">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="bg-blue-500 text-white py-16">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-4xl font-bold mb-4">Selamat Datang di Perpustakaan Sekolah</h1>
+            <p class="text-xl mb-8">Temukan ribuan buku dan sumber pengetahuan untuk mendukung pembelajaran Anda</p>
+            <div class="flex justify-center space-x-4">
+                <a href="#katalog" class="bg-white text-blue-600 px-6 py-2 rounded-full font-semibold hover:bg-blue-100">Lihat Katalog</a>
+                <a href="#admin" class="bg-transparent border-2 border-white px-6 py-2 rounded-full font-semibold hover:bg-blue-600">Area Admin</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Berita Terbaru -->
+    <section id="berita" class="py-12 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold mb-8 text-center">Berita & Pengumuman</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                    <img src="https://source.unsplash.com/random/800x500/?library" alt="Berita 1" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="font-bold text-xl mb-2">Program Literasi Baru</h3>
+                        <p class="text-gray-600 mb-4">Program membaca 15 menit setiap pagi untuk meningkatkan minat baca siswa.</p>
+                        <a href="#" class="text-blue-600 hover:text-blue-800">Baca selengkapnya →</a>
+                    </div>
+                </div>
+                <!-- Berita 2 -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                    <img src="https://source.unsplash.com/random/800x500/?books" alt="Berita 2" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="font-bold text-xl mb-2">Koleksi Buku Baru</h3>
+                        <p class="text-gray-600 mb-4">100 judul buku baru telah ditambahkan ke koleksi perpustakaan.</p>
+                        <a href="#" class="text-blue-600 hover:text-blue-800">Baca selengkapnya →</a>
+                    </div>
+                </div>
+                <!-- Berita 3 -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                    <img src="https://source.unsplash.com/random/800x500/?study" alt="Berita 3" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="font-bold text-xl mb-2">Lomba Menulis Cerpen</h3>
+                        <p class="text-gray-600 mb-4">Ikuti lomba menulis cerpen dan menangkan hadiah menarik!</p>
+                        <a href="#" class="text-blue-600 hover:text-blue-800">Baca selengkapnya →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Katalog Buku -->
+    <section id="katalog" class="py-12 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold mb-8 text-center">Katalog Buku</h2>
+            
+            <!-- Filter dan Pencarian -->
+            <div class="mb-8 flex flex-wrap gap-4 justify-center">
+                <input type="text" placeholder="Cari judul buku..." class="px-4 py-2 border rounded-lg w-full md:w-96">
+                <select class="px-4 py-2 border rounded-lg">
+                    <option value="">Semua Kategori</option>
+                    <option value="fiksi">Fiksi</option>
+                    <option value="non-fiksi">Non-Fiksi</option>
+                    <option value="pelajaran">Buku Pelajaran</option>
+                </select>
+            </div>
+
+            <!-- Daftar Buku -->
+            <div class="grid md:grid-cols-4 gap-6" id="daftar-buku">
+                <!-- Buku akan ditambahkan secara dinamis melalui JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Acara -->
+    <section id="acara" class="py-12 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold mb-8 text-center">Kalender Acara</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Kalender -->
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="font-bold text-xl mb-4">Kalender Kegiatan</h3>
+                    <div class="grid grid-cols-7 gap-2 text-center">
+                        <div class="font-bold">Min</div>
+                        <div class="font-bold">Sen</div>
+                        <div class="font-bold">Sel</div>
+                        <div class="font-bold">Rab</div>
+                        <div class="font-bold">Kam</div>
+                        <div class="font-bold">Jum</div>
+                        <div class="font-bold">Sab</div>
+                        <!-- Tanggal akan ditambahkan secara dinamis -->
+                    </div>
+                </div>
+
+                <!-- Daftar Acara -->
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="font-bold text-xl mb-4">Acara Mendatang</h3>
+                    <div class="space-y-4">
+                        <div class="border-l-4 border-blue-500 pl-4">
+                            <div class="font-semibold">Bedah Buku "Laskar Pelangi"</div>
+                            <div class="text-gray-600">20 November 2023 | 09:00 WIB</div>
+                        </div>
+                        <div class="border-l-4 border-blue-500 pl-4">
+                            <div class="font-semibold">Workshop Menulis Kreatif</div>
+                            <div class="text-gray-600">25 November 2023 | 13:00 WIB</div>
+                        </div>
+                        <div class="border-l-4 border-blue-500 pl-4">
+                            <div class="font-semibold">Diskusi Sastra</div>
+                            <div class="text-gray-600">30 November 2023 | 10:00 WIB</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Admin Section -->
+    <section id="admin" class="py-12 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold mb-8 text-center">Area Admin</h2>
+            <div class="max-w-2xl mx-auto bg-white rounded-lg shadow-md p-6">
+                <h3 class="font-bold text-xl mb-4">Manajemen Buku</h3>
+                
+                <!-- Form Tambah Buku -->
+                <form id="form-buku" class="space-y-4">
+                    <div>
+                        <label class="block text-gray-700 mb-2">Judul Buku</label>
+                        <input type="text" id="judul" class="w-full px-4 py-2 border rounded-lg" required>
+                    </div>
+                    <div>
+                        <label class="block text-gray-700 mb-2">Penulis</label>
+                        <input type="text" id="penulis" class="w-full px-4 py-2 border rounded-lg" required>
+                    </div>
+                    <div>
+                        <label class="block text-gray-700 mb-2">Kategori</label>
+                        <select id="kategori" class="w-full px-4 py-2 border rounded-lg" required>
+                            <option value="fiksi">Fiksi</option>
+                            <option value="non-fiksi">Non-Fiksi</option>
+                            <option value="pelajaran">Buku Pelajaran</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-gray-700 mb-2">ISBN</label>
+                        <input type="text" id="isbn" class="w-full px-4 py-2 border rounded-lg" required>
+                    </div>
+                    <div class="flex justify-end space-x-4">
+                        <button type="submit" class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700">
+                            Tambah Buku
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Kontak Kami</h3>
+                    <div class="space-y-2">
+                        <p><i class="fas fa-phone mr-2"></i> (021) 1234-5678</p>
+                        <p><i class="fas fa-envelope mr-2"></i> perpustakaan@sekolah.edu</p>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Alamat</h3>
+                    <p>Jl. Pendidikan No. 123<br>
+                    Kota Jakarta, 12345<br>
+                    Indonesia</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Media Sosial</h3>
+                    <div class="flex space-x-4">
+                        <a href="#" class="hover:text-blue-400"><i class="fab fa-facebook fa-2x"></i></a>
+                        <a href="#" class="hover:text-blue-400"><i class="fab fa-twitter fa-2x"></i></a>
+                        <a href="#" class="hover:text-blue-400"><i class="fab fa-instagram fa-2x"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-8 pt-8 border-t border-gray-700 text-center">
+                <p>&copy; 2023 Perpustakaan Sekolah. Hak Cipta Dilindungi.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript untuk manajemen buku -->
+    <script>
+        // Fungsi untuk mengambil daftar buku dari API
+        async function ambilDaftarBuku() {
+            try {
+                const response = await fetch('/api/books');
+                const data = await response.json();
+                return data;
+            } catch (error) {
+                console.error('Error:', error);
+                return [];
+            }
+        }
+
+        // Fungsi untuk menampilkan buku
+        async function tampilkanBuku() {
+            const daftarBuku = document.getElementById('daftar-buku');
+            daftarBuku.innerHTML = '';
+
+            const bukuList = await ambilDaftarBuku();
+            
+            bukuList.forEach(buku => {
+                const bukuElement = document.createElement('div');
+                bukuElement.className = 'bg-white rounded-lg shadow-md p-6';
+                bukuElement.innerHTML = `
+                    <h3 class="font-bold text-xl mb-2">${buku.judul}</h3>
+                    <p class="text-gray-600">Penulis: ${buku.penulis}</p>
+                    <p class="text-gray-600">Kategori: ${buku.kategori}</p>
+                    <p class="text-gray-600">ISBN: ${buku.isbn}</p>
+                    <button onclick="hapusBuku('${buku.isbn}')" class="mt-4 text-red-600 hover:text-red-800">
+                        <i class="fas fa-trash"></i> Hapus
+                    </button>
+                `;
+                daftarBuku.appendChild(bukuElement);
+            });
+        }
+
+        // Fungsi untuk menambah buku
+        document.getElementById('form-buku').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const bukuBaru = {
+                judul: document.getElementById('judul').value,
+                penulis: document.getElementById('penulis').value,
+                kategori: document.getElementById('kategori').value,
+                isbn: document.getElementById('isbn').value
+            };
+
+            try {
+                const response = await fetch('/api/books', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(bukuBaru)
+                });
+
+                if (response.ok) {
+                    await tampilkanBuku();
+                    this.reset();
+                } else {
+                    const error = await response.json();
+                    alert(error.error || 'Gagal menambahkan buku');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Terjadi kesalahan saat menambahkan buku');
+            }
+        });
+
+        // Fungsi untuk menghapus buku
+        async function hapusBuku(isbn) {
+            try {
+                const response = await fetch(`/api/books/${isbn}`, {
+                    method: 'DELETE'
+                });
+
+                if (response.ok) {
+                    await tampilkanBuku();
+                } else {
+                    const error = await response.json();
+                    alert(error.error || 'Gagal menghapus buku');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Terjadi kesalahan saat menghapus buku');
+            }
+        }
+
+        // Tampilkan buku saat halaman dimuat
+        window.onload = tampilkanBuku;
+    </script>
+</body>
+</html>
