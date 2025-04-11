@@ -1,21 +1,73 @@
-from flask import Flask, request, jsonify, send_from_directory
+from flask import Flask, request, jsonify, send_from_directory, session, redirect, url_for
 from flask_cors import CORS
 import sqlite3
 from datetime import datetime
 import os
+from werkzeug.security import generate_password_hash, check_password_hash
 
 app = Flask(__name__, static_url_path='')
+app.secret_key = 'your-secret-key-here'  # Change this to a secure secret key
 CORS(app)
 
-# Serve index.html at root
+# Login required decorator
+def login_required(f):
+    def decorated_function(*args, **kwargs):
+        if 'user_id' not in session:
+            return jsonify({'error': 'Unauthorized'}), 401
+        return f(*args, **kwargs)
+    decorated_function.__name__ = f.__name__
+    return decorated_function
+
+# Route handlers
 @app.route('/')
 def root():
     return send_from_directory('.', 'index.html')
+
+@app.route('/login')
+def login_page():
+    return send_from_directory('.', 'login.html')
+
+@app.route('/api/login', methods=['POST'])
+def login():
+    data = request.json
+    if not data or 'username' not in data or 'password' not in data:
+        return jsonify({'error': 'Missing username or password'}), 400
+    
+    conn = sqlite3.connect('perpustakaan.db')
+    c = conn.cursor()
+    c.execute('SELECT * FROM users WHERE username = ?', (data['username'],))
+    user = c.fetchone()
+    conn.close()
+    
+    if user and check_password_hash(user[2], data['password']):
+        session['user_id'] = user[0]
+        session['username'] = user[1]
+        session['role'] = user[3]
+        return jsonify({'message': 'Login successful', 'role': user[3]})
+    
+    return jsonify({'error': 'Invalid username or password'}), 401
+
+@app.route('/api/logout', methods=['POST'])
+def logout():
+    session.clear()
+    return jsonify({'message': 'Logout successful'})
+
+@app.route('/api/check-auth', methods=['GET'])
+def check_auth():
+    if 'user_id' in session:
+        return jsonify({
+            'authenticated': True,
+            'username': session['username'],
+            'role': session['role']
+        })
+    return jsonify({'authenticated': False})
 
 # Database initialization
 def init_db():
     conn = sqlite3.connect('perpustakaan.db')
     c = conn.cursor()
+    
+    # Create books table
     c.execute('''
         CREATE TABLE IF NOT EXISTS books (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -26,6 +78,25 @@ def init_db():
             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         )
     ''')
+    
+    # Create users table
+    c.execute('''
+        CREATE TABLE IF NOT EXISTS users (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            username TEXT UNIQUE NOT NULL,
+            password TEXT NOT NULL,
+            role TEXT NOT NULL,
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        )
+    ''')
+    
+    # Create default admin user if not exists
+    c.execute('SELECT * FROM users WHERE username = ?', ('admin',))
+    if not c.fetchone():
+        admin_password = generate_password_hash('admin123')
+        c.execute('INSERT INTO users (username, password, role) VALUES (?, ?, ?)',
+                 ('admin', admin_password, 'admin'))
+    
     conn.commit()
     conn.close()
 
@@ -55,6 +126,7 @@ def get_books():
     } for book in books])
 
 @app.route('/api/books', methods=['POST'])
+@login_required
 def add_book():
     data = request.json
     
@@ -83,6 +155,7 @@ def add_book():
     }), 201
 
 @app.route('/api/books/<isbn>', methods=['DELETE'])
+@login_required
 def delete_book(isbn):
     conn = sqlite3.connect('perpustakaan.db')
     c = conn.cursor()
