@@ -62,7 +62,12 @@
     <main class="container mx-auto px-4 pt-24 pb-12">
         <!-- Search and Filter Section -->
         <div class="mb-8">
-            <h1 class="text-3xl font-bold text-gray-800 mb-6">Katalog Buku</h1>
+            <div class="flex justify-between items-center mb-6">
+                <h1 class="text-3xl font-bold text-gray-800">Katalog Buku</h1>
+                <button id="add-book-button" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition duration-300">
+                    <i class="fas fa-plus mr-2"></i>Tambah Buku
+                </button>
+            </div>
             <div class="bg-white rounded-lg shadow-md p-6">
                 <div class="grid md:grid-cols-4 gap-4">
                     <!-- Search Input -->
@@ -170,6 +175,56 @@
             </nav>
         </div>
     </main>
+
+    <!-- Add Book Modal -->
+    <div id="add-book-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center z-50">
+        <div class="bg-white rounded-lg p-8 max-w-md w-full">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold text-gray-800">Tambah Buku Baru</h2>
+                <button id="close-modal" class="text-gray-600 hover:text-gray-800">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+            <form id="add-book-form" class="space-y-4">
+                <div>
+                    <label for="book-title" class="block text-gray-700 font-medium mb-2">Judul Buku</label>
+                    <input type="text" id="book-title" name="title" required
+                           class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                </div>
+                <div>
+                    <label for="book-author" class="block text-gray-700 font-medium mb-2">Penulis</label>
+                    <input type="text" id="book-author" name="author" required
+                           class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                </div>
+                <div>
+                    <label for="book-category" class="block text-gray-700 font-medium mb-2">Kategori</label>
+                    <select id="book-category" name="category" required
+                            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <option value="fiksi">Fiksi</option>
+                        <option value="non-fiksi">Non-Fiksi</option>
+                        <option value="pelajaran">Buku Pelajaran</option>
+                        <option value="referensi">Referensi</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="book-image" class="block text-gray-700 font-medium mb-2">URL Gambar Sampul</label>
+                    <input type="url" id="book-image" name="image" required
+                           class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                           placeholder="https://example.com/image.jpg">
+                </div>
+                <div class="flex justify-end space-x-4 mt-6">
+                    <button type="button" id="cancel-add-book"
+                            class="px-6 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50">
+                        Batal
+                    </button>
+                    <button type="submit"
+                            class="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+                        Tambah Buku
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
 
     <!-- Footer -->
     <footer class="bg-gray-800 text-white py-12">
