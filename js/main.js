@@ -10,64 +10,6 @@ function initMobileMenu() {
     }
 }
 
-// Form Validation
-function validateForm(formElement) {
-    const inputs = formElement.querySelectorAll('input[required], textarea[required]');
-    let isValid = true;
-
-    inputs.forEach(input => {
-        if (!input.value.trim()) {
-            isValid = false;
-            input.classList.add('border-red-500');
-            
-            // Create error message if it doesn't exist
-            if (!input.nextElementSibling?.classList.contains('error-message')) {
-                const errorMessage = document.createElement('p');
-                errorMessage.className = 'text-red-500 text-sm mt-1 error-message';
-                errorMessage.textContent = 'Field ini wajib diisi';
-                input.parentNode.insertBefore(errorMessage, input.nextSibling);
-            }
-        } else {
-            input.classList.remove('border-red-500');
-            const errorMessage = input.nextElementSibling;
-            if (errorMessage?.classList.contains('error-message')) {
-                errorMessage.remove();
-            }
-        }
-    });
-
-    return isValid;
-}
-
-// Contact Form Handler
-function initContactForm() {
-    const contactForm = document.getElementById('contact-form');
-    
-    if (contactForm) {
-        contactForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            
-            if (validateForm(contactForm)) {
-                const formData = {
-                    name: document.getElementById('name').value,
-                    email: document.getElementById('email').value,
-                    subject: document.getElementById('subject').value,
-                    message: document.getElementById('message').value
-                };
-                
-                // Here you would typically send this data to a server
-                console.log('Form submitted:', formData);
-                
-                // Show success message
-                alert('Terima kasih! Pesan Anda telah terkirim.');
-                
-                // Reset form
-                contactForm.reset();
-            }
-        });
-    }
-}
-
 // Book Search and Filter
 function initBookSearch() {
     const searchInput = document.getElementById('search');
@@ -113,22 +55,73 @@ function initBookSearch() {
     }
 }
 
-// Event Calendar
-function initEventCalendar() {
-    const calendar = document.querySelector('.calendar');
-    if (calendar) {
-        const dates = calendar.querySelectorAll('.calendar-date');
-        
-        dates.forEach(date => {
-            date.addEventListener('click', () => {
-                // Remove selected class from all dates
-                dates.forEach(d => d.classList.remove('selected'));
-                // Add selected class to clicked date
-                date.classList.add('selected');
-                
-                // Here you would typically fetch and display events for the selected date
-                console.log('Selected date:', date.textContent);
-            });
+// Add Book Modal
+function initAddBookModal() {
+    const modal = document.getElementById('add-book-modal');
+    const openButton = document.getElementById('add-book-button');
+    const closeButton = document.getElementById('close-modal');
+    const cancelButton = document.getElementById('cancel-add-book');
+    const form = document.getElementById('add-book-form');
+    const booksContainer = document.getElementById('books-container');
+
+    function showModal() {
+        modal.classList.remove('hidden');
+    }
+
+    function hideModal() {
+        modal.classList.add('hidden');
+        form.reset();
+    }
+
+    function createBookCard(bookData) {
+        const card = document.createElement('div');
+        card.className = 'bg-white rounded-lg shadow-md overflow-hidden book-card';
+        card.dataset.category = bookData.category;
+        card.dataset.available = 'true';
+
+        card.innerHTML = `
+            <img src="${bookData.image}" alt="${bookData.title}" class="w-full h-48 object-cover">
+            <div class="p-4">
+                <span class="text-sm text-white bg-green-500 px-2 py-1 rounded-full">Tersedia</span>
+                <h3 class="font-semibold text-lg mt-2">${bookData.title}</h3>
+                <p class="text-gray-600 text-sm mb-2">Penulis: ${bookData.author}</p>
+                <p class="text-gray-600 text-sm mb-4">Kategori: ${bookData.category}</p>
+                <button class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition duration-300">
+                    Pinjam Buku
+                </button>
+            </div>
+        `;
+
+        return card;
+    }
+
+    if (openButton && closeButton && cancelButton && form && modal) {
+        openButton.addEventListener('click', showModal);
+        closeButton.addEventListener('click', hideModal);
+        cancelButton.addEventListener('click', hideModal);
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const bookData = {
+                title: document.getElementById('book-title').value,
+                author: document.getElementById('book-author').value,
+                category: document.getElementById('book-category').value,
+                image: document.getElementById('book-image').value
+            };
+
+            const newBookCard = createBookCard(bookData);
+            booksContainer.insertBefore(newBookCard, booksContainer.firstChild);
+
+            hideModal();
+            alert('Buku berhasil ditambahkan!');
+        });
+
+        // Close modal when clicking outside
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                hideModal();
+            }
         });
     }
 }
@@ -136,23 +129,6 @@ function initEventCalendar() {
 // Initialize all functionality when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
     initMobileMenu();
-    initContactForm();
     initBookSearch();
-    initEventCalendar();
+    initAddBookModal();
 });
-
-// Utility function to format dates
-function formatDate(date) {
-    return new Intl.DateTimeFormat('id-ID', {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric'
-    }).format(date);
-}
-
-// Utility function to handle API errors
-function handleError(error) {
-    console.error('An error occurred:', error);
-    // Here you would typically show a user-friendly error message
-    alert('Maaf, terjadi kesalahan. Silakan coba lagi nanti.');
-}
